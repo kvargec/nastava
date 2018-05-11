@@ -10,6 +10,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-2">
-                    Ovdje će biti izbornik
+                    Izbornik
+                    <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="<?php echo SITE_URL; ?>index.php?kontr=Film">Filmovi</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo SITE_URL; ?>index.php?kontr=Actor">Glumci</a>
+                    </li>
+                    
+                  </ul>
                 </div>
                 <div class="col-10">

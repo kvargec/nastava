@@ -9,8 +9,8 @@
 <ul>
     <?php 
     //$data['filmovi'] iz controllera postaje $filmovi zbog extract
-    foreach ($filmovi as $film){
-        echo '<a href="'.SITE_URL.'index.php?kontr=Film&akcija=show&id='.$film['film_id'].'"><li>'.$film['title'].'</a></li>';
+    foreach ($actors as $actor){
+        echo '<li>'.$actor['first_name'].' '.$actor['last_name'].'</li>';
     }
     ?>
 </ul>

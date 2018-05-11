@@ -9,7 +9,14 @@ if(isset($_GET['kontr'])){
     require_once 'application/controllers/'.$koji.'Controller.php';
     $zaPoziv=$koji.'Controller';
     $prikaz=new $zaPoziv();
-    $prikaz->index();
+    if(isset($_GET['akcija'])){
+        $dodatno=isset($_GET['id'])?$_GET['id']:null;
+        $akcija=$_GET['akcija'];
+        $prikaz->$akcija($dodatno);
+    }else{
+        $prikaz->index();
+    }
+    
 }else{
     require_once 'application/controllers/FilmController.php';
     $prikaz=new FilmController();
