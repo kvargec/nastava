@@ -11,7 +11,10 @@ class FilmController extends BaseController{
     }
     public function show($id){
         $film=new Film();
+        $this->loadModel("Category");
         $data['film']=$film->getByPk($id);
+        $kat=new Category();
+        $data['kategorije']=$kat->filmCategory($id);
         $this->loadView('film/show',$data);
     }
 

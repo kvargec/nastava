@@ -12,6 +12,7 @@ class ActorController extends BaseController{
     public function show($id){
         $actor=new Actor();
         $data['actor']=$actor->getByPk($id);
+        $data['filmovi']=$actor->getFilms($id);
         $this->loadView('actor/show',$data);
     }
 

@@ -14,6 +14,10 @@ $info=$film[0];
   <div class="card-body">
     <h5 class="card-title"><?php echo $info['rating'] ?></h5>
     <p class="card-text"><?php echo $info['description'] ?></p>
+    <?php foreach($kategorije as $kat) {?>
+    <span class="badge badge-warning"><?php echo $kat['name']; ?></span>
+    <?php } ?>
+    <hr />
     <a href="#" class="btn btn-primary"><?php echo $info['rental_rate'] ?></a>
   </div>
 </div>
