@@ -7,6 +7,18 @@
  */
 $info=$film[0];
 ?>
+<script>
+    $(document).ready(function(){
+       $("#glumci").click(function(){
+            $.ajax({
+                url: "<?php echo SITE_URL ?>index.php?kontr=Film&akcija=popisGlumaca&id=<?php echo $info['film_id']; ?>",
+                context: document.body
+              }).done(function(data) {
+                $("#glumciPopis" ).html(data);
+              });
+       })
+    });
+</script>
 <div class="card">
   <div class="card-header">
     <?php echo $info['title'] ?>
@@ -19,5 +31,9 @@ $info=$film[0];
     <?php } ?>
     <hr />
     <a href="#" class="btn btn-primary"><?php echo $info['rental_rate'] ?></a>
+    <a href="#" id="glumci" class="btn btn-warning">Prikaži glumce</a>
   </div>
+    <div id="glumciPopis">
+        
+    </div>
 </div>

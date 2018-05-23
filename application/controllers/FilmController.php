@@ -17,5 +17,15 @@ class FilmController extends BaseController{
         $data['kategorije']=$kat->filmCategory($id);
         $this->loadView('film/show',$data);
     }
+    public function popisGlumaca($id){
+        $film=new Film();
+        $popis=$film->getActors($id);
+        $temp="<ul>";
+        foreach($popis as $glumac){
+            $temp.="<li>".$glumac['first_name']." ".$glumac['last_name']."</li>";
+        }
+        $temp.="</ul>";
+        echo $temp;
+    }
 
 }

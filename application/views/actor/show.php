@@ -23,4 +23,4 @@ $info=$actor[0];
     ?>
     </ul>
   </div>
-</di
+</div>
