@@ -16,4 +16,21 @@ class Film extends BaseModel{
         }
         return $izlaz;
     }
+    public function getFilm($pojam,$tablica){
+        if($tablica=='film')
+        {
+            $upit="SELECT title, film_id FROM film WHERE title LIKE '%".$pojam."%'";
+        }else{
+            $upit="SELECT first_name,last_name, actor_id FROM actor WHERE first_name LIKE '%".$pojam."%' "
+                    . "OR last_name like '%".$pojam."%'";
+        }
+        $rezultat=  mysqli_query($this->veza, $upit);
+        $izlaz=array();
+        while($row=  mysqli_fetch_assoc($rezultat)){
+            $temp=array();
+            $temp['naziv']=($tablica=='film')?$row['title']:$row['first_name'].' '.$row['last_name'];
+            $izlaz[]=$temp;
+        }
+        return $izlaz;
+    }
 }
