@@ -27,5 +27,35 @@ class FilmController extends BaseController{
         $temp.="</ul>";
         echo $temp;
     }
-
+    public function exportCSV(){
+        $film=new Film();
+        $filmovi=$film->getAll();
+        $temp="";
+        foreach ($filmovi as $film){
+            $temp.=$film['title'].";".$film['rating'].PHP_EOL;
+        }
+        $fp=fopen('films.csv',"w+");
+        fwrite($fp, $temp);
+        fclose($fp);
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename=films.csv');
+        header('Pragma: no-cache');
+        readfile("films.csv");
+    }
+    public function exportJSON(){  
+        $film=new Film();
+        $filmovi=$film->getAll();
+        $temp=array();
+        foreach ($filmovi as $film){
+            $temp[$film['title']]=$film['rating'];
+        }
+        $fp=fopen('films.json',"w+");
+        fwrite($fp, json_encode($temp));
+        fclose($fp);
+        header('Content-Type: application/json');
+        header('Content-Disposition: attachment; filename=films.json');
+        header('Pragma: no-cache');
+        readfile("films.json");
+        
+    }
 }

@@ -6,6 +6,8 @@
  * and open the template in the editor.
  */
 ?>
+<a href="<?php echo SITE_URL.'index.php?kontr=Film&akcija=exportCSV'?>" class="btn btn-danger">Export to CSV</a>
+<a href="<?php echo SITE_URL.'index.php?kontr=Film&akcija=exportJSON'?>" class="btn btn-danger">Export to JSON</a>
 <ul>
     <?php 
     //$data['filmovi'] iz controllera postaje $filmovi zbog extract
