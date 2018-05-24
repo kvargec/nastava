@@ -1,4 +1,4 @@
 <?php
 
-define('SITE_URL','http://localhost/films/');
+define('SITE_URL','http://localhost/nastava/');
 
