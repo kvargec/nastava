@@ -21,6 +21,12 @@
                     <li class="nav-item">
                       <a class="nav-link" href="<?php echo SITE_URL; ?>index.php?kontr=Trazi">Tražilica</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo SITE_URL; ?>index.php?kontr=Site&akcija=page&id=aboutus">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo SITE_URL; ?>index.php?kontr=Site&akcija=page&id=contact">Kontakt</a>
+                    </li>
                   </ul>
                 </div>
                 <div class="col-10">
