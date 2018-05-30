@@ -19,6 +19,9 @@
                       <a class="nav-link" href="<?php echo SITE_URL; ?>index.php?kontr=Actor">Glumci</a>
                     </li>
                     <li class="nav-item">
+                      <a class="nav-link" href="<?php echo SITE_URL; ?>index.php?kontr=Customer">Kupci</a>
+                    </li>
+                    <li class="nav-item">
                       <a class="nav-link" href="<?php echo SITE_URL; ?>index.php?kontr=Trazi">Tražilica</a>
                     </li>
                     <li class="nav-item">

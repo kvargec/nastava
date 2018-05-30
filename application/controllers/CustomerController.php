@@ -11,7 +11,14 @@ class CustomerController extends BaseController{
         $this->loadView('customer/index',$data);
     }
     public function show($id){
-        
+        $customer=new Customer();
+        $data['customer']=$customer->get_customer($id);
+        $this->loadView('customer/show',$data);
+    }
+    public function edit($id){
+        $customer=new Customer();
+        $data['customer']=$customer->get_customer_details($id);
+        $this->loadView('customer/edit',$data);
     }
     public function editaddress(){
         $data=array();
@@ -32,5 +39,7 @@ class CustomerController extends BaseController{
             }
         }
     }
-
+    public function snimi(){
+        var_dump($_POST);
+    }
 }

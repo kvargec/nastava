@@ -6,11 +6,28 @@
  * and open the template in the editor.
  */
 ?>
-<ul>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ime i prezime</th>
+      <th scope="col">Adresa</th>
+      <th scope="col">Akcije</th>
+    </tr>
+  </thead>
+  <tbody>
     <?php 
-    //$data['filmovi'] iz controllera postaje $filmovi zbog extract
+    $i=1;
+    
     foreach ($customers as $customer){
-        echo '<li><a href="'.SITE_URL.'index.php?kontr=Customer&akcija=show&id='.$customer['customer_id'].'">'.$customer['first_name'].' '.$customer['last_name'].'</a></li>';
+        echo '<tr>';
+        echo '<td>'.$i.'.</td>';
+        echo '<td><a href="'.SITE_URL.'index.php?kontr=Customer&akcija=show&id='.$customer['customer_id'].'">'.$customer['first_name'].' '.$customer['last_name'].'</a></td>';
+        echo '<td>'.$customer['address'].'</td>';
+        echo '<td>&nbsp;</td>';
+        echo '</tr>';
+        $i++;
     }
     ?>
-</ul>
+  </tbody>
+</table>
