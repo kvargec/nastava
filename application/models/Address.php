@@ -22,7 +22,13 @@ class Address extends BaseModel{
         }
     }
     public function get_address($id){
-        
+        $upit="SELECT * FROM address WHERE address_id=".$id;
+        $rezultat=  mysqli_query($this->veza, $upit);
+        $izlaz=array();
+        while($row=  mysqli_fetch_assoc($rezultat)){
+            $izlaz[]=$row;
+        }
+        return $izlaz;
     }
     public function get_gradovi(){
         $upit="SELECT city_id,city FROM city";
@@ -32,6 +38,19 @@ class Address extends BaseModel{
             $izlaz[]=$row;
         }
         return $izlaz;
+    }
+    public function update_address($id,$address,$city_id,$postal_code,$phone,$district=null){
+        $upit="UPDATE address SET address='$address', city_id=$city_id, postal_code='$postal_code'"
+                . ", phone='$phone', district='$district'"
+                . " WHERE address_id=".$id;
+       
+        $rezultat=  mysqli_query($this->veza, $upit);
+       
+        if($rezultat){
+            return true;
+        }else{
+            return (mysqli_error($this->veza) );
+        }
     }
 
 }

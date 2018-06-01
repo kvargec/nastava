@@ -26,3 +26,4 @@
     </tr>
 </table>
 <a href="<?php echo SITE_URL; ?>index.php?kontr=Customer&akcija=edit&id=<?php echo $customer[0]['customer_id']; ?>" class="btn btn-warning">Uredi</a>
+<a href="<?php echo SITE_URL; ?>index.php?kontr=Customer&akcija=updateAddress&id=<?php echo $customer[0]['customer_id']; ?>" class="btn btn-warning">Uredi adresu</a>

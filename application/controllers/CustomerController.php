@@ -40,6 +40,36 @@ class CustomerController extends BaseController{
         }
     }
     public function snimi(){
-        var_dump($_POST);
+        $ime=$_POST['first_name'];
+        $prezime=$_POST['last_name'];
+        $emajl=$_POST['email'];
+        $odabrano=isset($_POST['active'])?1:0;
+        $id=$_POST['customer_id'];
+        $kupac=new Customer();
+        $data['poruka']=$kupac->save($ime,$prezime,$emajl,$odabrano,$id);
+        $this->loadView('customer/zahvala', $data);
+    }
+    public function updateAddress($id){
+        //ovo je id od kupca
+        $model=new Customer();
+        $kupac=$model->get_customer_details($id);
+        $model2=new Address();
+        $data['gradovi']=$model2->get_gradovi();
+        $data['adresa']=$model2->get_address($kupac[0]['address_id']);
+        $this->loadView('customer/addressEdit', $data);
+    }
+
+    public function updateadresu(){
+        if(isset($_POST)){
+            $adresa=new Address();
+            $kraj=$adresa->update_address($_POST['address_id'],$_POST['address'], $_POST['city_id'], $_POST['postal_code'], $_POST['phone'], $_POST['district']);
+            if($kraj){
+                $data['poruka']="Uspješno ste spremili adresu";
+                $this->loadView('customer/zahvala', $data);
+            }else{
+                $data['poruka']=$kraj;
+                $this->loadView('customer/address', $data);
+            }
+        }
     }
 }

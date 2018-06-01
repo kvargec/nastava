@@ -13,11 +13,11 @@
     </div>
     <div class="form-group">
         <label for="last_name">Prezime</label>
-        <input type="text" class="form-control"  name="first_name" value="<?php echo $customer[0]['last_name'];?>"/>
+        <input type="text" class="form-control"  name="last_name" value="<?php echo $customer[0]['last_name'];?>"/>
     </div>
     <div class="form-group">
         <label for="email">E-mail</label>
-        <input type="text" class="form-control"  name="first_name" value="<?php echo $customer[0]['email'];?>"/>
+        <input type="text" class="form-control"  name="email" value="<?php echo $customer[0]['email'];?>"/>
     </div>
     <div class="form-group">
         <label for="active">

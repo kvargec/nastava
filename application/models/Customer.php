@@ -49,5 +49,18 @@ class Customer extends BaseModel{
         }
         return $izlaz;
     }
+    public function save($ime,$prezime,$emajl,$odabrano,$id){
+        
+        $upit="UPDATE `customer` SET `first_name`='$ime', `last_name`='$prezime'"
+                . ",`email`='$emajl', `active`=$odabrano "
+                . " WHERE customer_id=".$id;
+        $rezultat=  mysqli_query($this->veza, $upit);
+        if($rezultat){
+            return "Sve je uspješno spremljeno";
+        }else{
+            $temp=mysqli_error($this->veza);
+            return "Greška prilikom spremanja: ".$temp.", upit:".$upit;
+        }
+    }
 
 }
