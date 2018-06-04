@@ -50,9 +50,9 @@ class Customer extends BaseModel{
         return $izlaz;
     }
     public function save($ime,$prezime,$emajl,$odabrano,$id){
-        
+        $vrijemePromjene=date("Y-m-d H:i:s",time());
         $upit="UPDATE `customer` SET `first_name`='$ime', `last_name`='$prezime'"
-                . ",`email`='$emajl', `active`=$odabrano "
+                . ",`email`='$emajl', `active`=$odabrano,`last_update`='$vrijemePromjene'  "
                 . " WHERE customer_id=".$id;
         $rezultat=  mysqli_query($this->veza, $upit);
         if($rezultat){
@@ -61,6 +61,17 @@ class Customer extends BaseModel{
             $temp=mysqli_error($this->veza);
             return "Greška prilikom spremanja: ".$temp.", upit:".$upit;
         }
+    }
+    public function delete($id){
+       $upit="DELETE FROM customer "
+                . " WHERE customer_id=".$id;
+        $rezultat=  mysqli_query($this->veza, $upit);
+        if($rezultat){
+            return "Kupac obrisan";
+        }else{
+            $temp=mysqli_error($this->veza);
+            return "Greška prilikom brisanja: ".$temp.", upit:".$upit;
+        } 
     }
 
 }

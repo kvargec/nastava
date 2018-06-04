@@ -12,4 +12,7 @@ class BaseController {
         require_once __DIR__.'/../application/views/'.$view.'.php';
         require_once __DIR__.'/../application/views/layout/footer.php';
     }
+    public function loadController($controller){
+        require_once __DIR__.'/../application/controllers/'.$controller.'Controller.php';
+    }
 }

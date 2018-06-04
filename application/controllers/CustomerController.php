@@ -72,4 +72,9 @@ class CustomerController extends BaseController{
             }
         }
     }
+    public function delete($id){
+        $model=new Customer();
+        $data['poruka']=$model->delete($id);
+        $this->loadView('customer/zahvala', $data);
+    }
 }
