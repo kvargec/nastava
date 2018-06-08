@@ -77,4 +77,14 @@ class CustomerController extends BaseController{
         $data['poruka']=$model->delete($id);
         $this->loadView('customer/zahvala', $data);
     }
+    public function aktiviraj($id){
+        $model=new Customer();
+        $model->promijeniStatus($id, 1);
+        echo '<i class="fas fa-ban"></i>';
+    }
+    public function deaktiviraj($id){
+        $model=new Customer();
+        $model->promijeniStatus($id, 0);
+        echo '<i class="far fa-circle"></i>';
+    }
 }

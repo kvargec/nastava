@@ -15,7 +15,7 @@ class Customer extends BaseModel{
         }
     }
     public function get_customer_all(){
-        $upit="SELECT c.first_name,c.last_name,c.customer_id,c.email, a.address FROM customer as c"
+        $upit="SELECT c.first_name,c.last_name,c.customer_id,c.email, a.address,a.address_id, c.active FROM customer as c"
                 . " LEFT JOIN  address as a ON a.address_id=c.address_id";
         $rezultat=  mysqli_query($this->veza, $upit);
      
@@ -72,6 +72,18 @@ class Customer extends BaseModel{
             $temp=mysqli_error($this->veza);
             return "Greška prilikom brisanja: ".$temp.", upit:".$upit;
         } 
+    }
+    public function promijeniStatus($id,$status){
+        $vrijemePromjene=date("Y-m-d H:i:s",time());
+        $upit="UPDATE `customer` SET `active`=$status,`last_update`='$vrijemePromjene'  "
+                . " WHERE customer_id=".$id;
+        $rezultat=  mysqli_query($this->veza, $upit);
+        if($rezultat){
+            return "Sve je uspješno spremljeno";
+        }else{
+            $temp=mysqli_error($this->veza);
+            return "Greška prilikom spremanja: ".$temp.", upit:".$upit;
+        }
     }
 
 }

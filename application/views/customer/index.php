@@ -23,15 +23,17 @@
     $i=1;
     
     foreach ($customers as $customer){
+        $ikona=$customer['active']==1?'<i class="fas fa-ban"></i>':'<i class="far fa-circle"></i>';
         echo '<tr>';
         echo '<td>'.$i.'.</td>';
         echo '<td><input type="checkbox" name="odabrani[]" value="'.$customer['customer_id'].'" /></td>';
         echo '<td><a href="'.SITE_URL.'index.php?kontr=Customer&akcija=show&id='.$customer['customer_id'].'">'.$customer['first_name'].' '.$customer['last_name'].'</a></td>';
-        echo '<td>'.$customer['address'].'</td>';
+        echo '<td><a href="'.SITE_URL.'index.php?kontr=Customer&akcija=updateAddress&id='.$customer['address_id'].'" class="btn btn-warning">'.$customer['address'].'</a></td>';
         echo '<td>'
         . '<a href="'.SITE_URL.'index.php?kontr=Customer&akcija=edit&id='.$customer['customer_id'].'"><i class="fas fa-edit"></i></a>&nbsp;'
         . '<a href="'.SITE_URL.'index.php?kontr=Customer&akcija=show&id='.$customer['customer_id'].'"><i class="far fa-eye"></i></a>&nbsp;'
-        . '<a href="'.SITE_URL.'index.php?kontr=Customer&akcija=delete&id='.$customer['customer_id'].'"><i class="fas fa-trash-alt"></i></a></td>';
+        . '<a href="'.SITE_URL.'index.php?kontr=Customer&akcija=delete&id='.$customer['customer_id'].'"><i class="fas fa-trash-alt"></i></a>'
+        .'<a href="#" onclick="promjena('.$customer['customer_id'].','.$customer['active'].')">'.$ikona.'</a></td>';
         echo '</tr>';
         $i++;
     }
