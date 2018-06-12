@@ -7,6 +7,7 @@ class FilmController extends BaseController{
     public function index(){
         $film=new Film();
         $data['filmovi']=$film->getAll();
+         $data['poruka']="Popis filmova";
         $this->loadView('film/index',$data);
     }
     public function show($id){
@@ -17,6 +18,27 @@ class FilmController extends BaseController{
         $data['kategorije']=$kat->filmCategory($id);
         $this->loadView('film/show',$data);
     }
+    public function edit($id){
+        $film=new Film();
+        $data['film']=$film->getByPk($id);
+        $data['jezici']=$film->getJezikAll();
+        $this->loadView('film/edit',$data);
+    }
+    public function update(){
+        $id=$_POST['film_id'];
+        $naziv=$_POST['title'];
+        $opis=$_POST['description'];
+        $film=new Film();
+        $reza=$film->save($id,$naziv,$opis);
+        if($reza){
+                $data['poruka']="Uspješno ste spremili adresu";
+                $this->index();
+            }else{
+                $data['poruka']=$reza;
+                $this->index();
+            }
+    }
+
     public function popisGlumaca($id){
         $film=new Film();
         $popis=$film->getActors($id);

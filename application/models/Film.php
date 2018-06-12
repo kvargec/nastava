@@ -16,6 +16,16 @@ class Film extends BaseModel{
         }
         return $izlaz;
     }
+    public function getJezikAll(){
+        $upit="SELECT * FROM language";
+        $rezultat=  mysqli_query($this->veza, $upit);
+        $izlaz=array();
+        while($row=  mysqli_fetch_assoc($rezultat)){
+            $izlaz[]=$row;
+        }
+        return $izlaz;
+    }
+
     public function getFilm($pojam,$tablica){
         if($tablica=='film')
         {
@@ -32,5 +42,18 @@ class Film extends BaseModel{
             $izlaz[]=$temp;
         }
         return $izlaz;
+    }
+    public function save($id,$naziv,$opis){
+         $vrijemePromjene=date("Y-m-d H:i:s",time());
+        $upit="UPDATE film SET title='$naziv', description='$opis'"
+                ."last_update='$vrijemePromjene'  "
+                . " WHERE film_id=".$id;
+        $rezultat=  mysqli_query($this->veza, $upit);
+        if($rezultat){
+            return "Sve je uspješno spremljeno";
+        }else{
+            $temp=mysqli_error($this->veza);
+            return "Greška prilikom spremanja: ".$temp.", upit:".$upit;
+        }
     }
 }

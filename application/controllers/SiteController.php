@@ -19,10 +19,16 @@ class SiteController extends BaseController{
         $zaporka=sha1($_POST['password']);
         if($zaporka==sha1('mama')){
             $_SESSION['user']=$user;
+            // logiran sam
+           
+            $data['poruka']="Uspješno ste logirani";
+            $this->loadView('site/login',$data);
+        }else{
+            $data=array();
+            $data['poruka']="Neispravni podaci";
+            $this->loadView('site/login',$data);
         }
-        $this->loadController('Film');
-        $kamoIdem=new FilmController();
-        $kamoIdem->index();
+        
         
     }
     public function logout(){

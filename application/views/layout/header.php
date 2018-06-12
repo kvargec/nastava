@@ -49,3 +49,8 @@
                   </ul>
                 </div>
                 <div class="col-10">
+                    <?php if(isset($poruka)):?>
+                    <div class="alert alert-success" role="alert">
+                        <?php echo isset($poruka)?$poruka:''; ?>
+                    </div>
+                    <?php endif;?>
