@@ -10,6 +10,18 @@ class CustomerController extends BaseController{
         $data['customers']=$customer->get_customer_all();
         $this->loadView('customer/index',$data);
     }
+    public function trazilica(){
+        $data=array();
+        $this->loadView('customer/trazilica',$data);
+    }
+    public function trazi(){
+        $pojam=$_POST['pojam'];
+        $mjestoTrazenja=$_POST['odabir'];
+        $customer=new Customer();
+        $data['customers']=$customer->get_customer_trazi($pojam,$mjestoTrazenja);
+        $this->loadView('customer/index',$data);
+    }
+
     public function show($id){
         $customer=new Customer();
         $data['customer']=$customer->get_customer($id);

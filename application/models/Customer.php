@@ -14,6 +14,20 @@ class Customer extends BaseModel{
             
         }
     }
+    public function get_customer_trazi($pojam,$mjesto){
+        $gdjeTrazim=$mjesto=='ime'?'c.first_name':'c.last_name';
+        $upit="SELECT c.first_name,c.last_name,c.customer_id,c.email, a.address,a.address_id, c.active FROM customer as c"
+                . " LEFT JOIN  address as a ON a.address_id=c.address_id"
+                . " WHERE $gdjeTrazim LIKE '%$pojam%'";
+        $rezultat=  mysqli_query($this->veza, $upit);
+     
+        $izlaz=array();
+        while($row=  mysqli_fetch_assoc($rezultat)){
+            $izlaz[]=$row;
+        }
+        return $izlaz;
+    }
+
     public function get_customer_all(){
         $upit="SELECT c.first_name,c.last_name,c.customer_id,c.email, a.address,a.address_id, c.active FROM customer as c"
                 . " LEFT JOIN  address as a ON a.address_id=c.address_id";
