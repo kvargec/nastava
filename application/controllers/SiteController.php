@@ -12,6 +12,7 @@ class SiteController extends BaseController{
     }
     public function page($page){
         $data=array();
+        $data['info']=  SiteController::info();
         $this->loadView('site/'.$page,$data);
     }
     public function login(){
@@ -60,5 +61,15 @@ class SiteController extends BaseController{
         header('Pragma: no-cache');
         readfile("export.json");
         
+    }
+    public static function info(){
+        $temp='<pre>';
+        $temp.=$_SERVER['SERVER_NAME'];
+        $temp.='</pre>';
+        return $temp;
+    }
+    public function ajax(){
+        $kaj=$_POST['podatak'];
+        echo 'Poslano je: '.$kaj;
     }
 }

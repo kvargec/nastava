@@ -17,12 +17,24 @@
                     $("#rezultati").html(response.data.name);
                 }
             });
+        });
+        $("#klik2").click(function(){
+            $.ajax({
+                url:"<?php echo SITE_URL ?>index.php?kontr=Site&akcija=ajax",
+                type:"POST",
+                data:{'podatak':'Idemo'},
+                success: function(response) {
+                    $("#rezultati").html(response);
+                }      
+            })
         })
     })
 </script>
 <h4>About us</h4>
+<?php echo $info; ?>
 <p>Pa tekst o nama</p>
 <a href="#" id="korisnik" class="btn btn-danger">Klikni</a>
+<a href="#" id="klik2" class="btn btn-warning">Ajax 2</a>
 <div id="rezultati">
 
 </div>
